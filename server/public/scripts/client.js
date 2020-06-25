@@ -45,8 +45,8 @@ function searchForItem() {
     url: '/search',
     data: substring
   }).then(function (res) {
-    console.log('Item found!');
-    updateSearchResults(res);
+    console.log('Search Complete');
+    updateSearchResults();
   }).catch(function (res) {
     alert('Error, invalid input!');
   })
@@ -87,7 +87,24 @@ function updateInventory() {
 
 }
 
-function updateSearchResults(res) {
+function updateSearchResults() {
+  $.ajax({
+    type: 'GET',
+    url: '/search-results'
+    //then, when you get a response, append a table row to the DOM with the info you received
+}).then(function (res) {
+  $('#inventory').empty();  
+  for (let i = 0; i < res.length; i++) {
+        let item = res[i];
+        $('#inventory').append(`
+            <tr>
+                <td class="item-name">${item.name}</td>
+                <td>${item.description}</td>
+            </tr>
+        `);
+    }
+});
+  
   $('#inventory').empty();  //empty out the table
   //render the search results
   //TODO add a fail handler

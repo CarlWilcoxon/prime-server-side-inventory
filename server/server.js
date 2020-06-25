@@ -14,6 +14,7 @@ const inventory = [
     description: 'a crisp, tart treat'
   },
 ];
+const searchResults = [];
 
 // setup the public directory for static files
 // any files in here can be sent back to web browsers or clients
@@ -44,7 +45,7 @@ app.post('/add-item', (req, res) => {
 })
 
 app.post('/search', (req, res) => {
-  let arrayOfResults = [];
+  searchResults = [];
   let words = req.body.bird;
   //if this is an empty object, it means that you forgot bodyParser
   console.log('Looking for', words);
@@ -52,18 +53,22 @@ app.post('/search', (req, res) => {
   for (let i = 0; i < inventory.length; i++) {
     const el = inventory[i];
     if (0 < el.name.search(words) || 0 < el.description.search(words)) {
-      arrayOfResults.push(el);
+      searchResults.push(el);
     }
   }
-  res.send(arrayOfResults); //TODO START HERE
+  //res.send(arrayOfResults); //TODO START HERE
+  if (arrayOfResults > 0){
+    res.sendStatus(302, )
+  }else if(arrayOfResults.length == 0){
+    res.sendStatus(204);
+  }
 })
 
-
-/*
-app.get('/song', (req, res) => {
-  res.send(songListArray);
+app.get('/search-results', (req, res) => {
+  res.send(searchResults);
 });
 
+/*
 app.get('/album', (req, res) => {
   res.send(albumListArray);
 });*/
