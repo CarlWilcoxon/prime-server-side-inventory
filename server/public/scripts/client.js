@@ -92,10 +92,10 @@ function updateSearchResults() {
     type: 'GET',
     url: '/search-results'
     //then, when you get a response, append a table row to the DOM with the info you received
-}).then(function (res) {
+}).then(function (response) {
   $('#inventory').empty();  
-  for (let i = 0; i < res.length; i++) {
-        let item = res[i];
+  for (let i = 0; i < response.length; i++) {
+        let item = response[i];
         $('#inventory').append(`
             <tr>
                 <td class="item-name">${item.name}</td>
@@ -104,17 +104,4 @@ function updateSearchResults() {
         `);
     }
 });
-  
-  $('#inventory').empty();  //empty out the table
-  //render the search results
-  //TODO add a fail handler
-  for (let i = 0; i < res.length; i++) {
-    let item = res[i];
-    $('#inventory').append(`
-        <tr>
-            <td class="item-name">${item.name}</td>
-            <td>${item.description}</td>
-        </tr>
-    `);
-}
 }

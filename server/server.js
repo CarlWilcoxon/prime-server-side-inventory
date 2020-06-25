@@ -45,7 +45,7 @@ app.post('/add-item', (req, res) => {
 })
 
 app.post('/search', (req, res) => {
-  searchResults = [];
+  searchResults.splice(0,searchResults.length);
   let words = req.body.bird;
   //if this is an empty object, it means that you forgot bodyParser
   console.log('Looking for', words);
@@ -57,11 +57,8 @@ app.post('/search', (req, res) => {
     }
   }
   //res.send(arrayOfResults); //TODO START HERE
-  if (arrayOfResults > 0){
-    res.sendStatus(302, )
-  }else if(arrayOfResults.length == 0){
-    res.sendStatus(204);
-  }
+  res.sendStatus(200);
+  
 })
 
 app.get('/search-results', (req, res) => {
