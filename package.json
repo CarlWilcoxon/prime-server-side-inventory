@@ -1,0 +1,24 @@
+{
+  "name": "prime-server-side-inventory",
+  "version": "1.0.0",
+  "description": "Server Side Inventory == Tech: JQuery, Node, Express, AJAX --- In this project we'll create a project that tracks an inventory on the server.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CarlWilcoxon/prime-server-side-inventory.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/CarlWilcoxon/prime-server-side-inventory/issues"
+  },
+  "homepage": "https://github.com/CarlWilcoxon/prime-server-side-inventory#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
