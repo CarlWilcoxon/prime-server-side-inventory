@@ -28,3 +28,6 @@ Add the following features:
 - add search functionality for description
 - display "no matches" if empty array is returned for a search
 - "remove" button for each item that makes use of a DELETE route 
+
+
+//str.search returns the indexOf the substring, and returns -1 if the substring cannot be found
