@@ -24,7 +24,7 @@ function onReady() {
 function submitItem(item) {
   $.ajax({
     type: 'POST',
-    url: '/add-item'
+    url: '/add-item',
     data: item
   }).then(function (res) {
     console.log('Item added!');
