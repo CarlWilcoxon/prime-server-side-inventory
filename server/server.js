@@ -12,46 +12,37 @@ const inv = require('./modules/inventory')
 // any files in here can be sent back to web browsers or clients
 app.use( express.static( 'server/public' ) );
 
+// Tell express how to read the request body
+let bodyParser = require('body-parser');
+app.use( bodyParser.urlencoded( {extended: true} ) );
+app.use( bodyParser.json() );
+
 // Tell the server to listen on a specific port
-// 
 const port = 5000
 app.listen( port, () => {
   console.log( 'Server is listening on port', port );
 })
 
-// -------- BASE -----//
 
-// Create your `/train` route here
-// when a user visits localhost:5000/train
-// this route should return the array of trains
+app.post('/add-item', (req, res) => {
+  let item = req.body;
+  //if this is an empty object, it means that you forgot bodyParser
+  console.log('Got new item', item);
 
-app.get('/train', (req, res) => {
-    res.send(trains);
+  inv.push(item);
+  res.sendStatus(201);
 })
 
 
-// -------- STRETCH -----//
 
-// Create your `/count` route here
-// when a user visits localhost:5000/count
-// this route should return the number of trains in the array
-// NOTE: express doesn't like it when you return numbers
-// instead, return an object like { totalCount: 4 }
+app.get('/artist', (req, res) => {
+  res.send(artistListArray);
+});
 
-app.get('/count', (req, res) => {
-    res.send({totalCount: trains.length});
-})
+app.get('/song', (req, res) => {
+  res.send(songListArray);
+});
 
-
-// Create your `/random` route here
-// when a user visits localhost:5000/random
-// this route should return a single train at random
-
-app.get('/random', (req, res) => {
-    res.send({randomTrain: trains[Math.floor(Math.random()*(trains.length))]});
-})
-
-
-// -------- BASE -----//
-
-// Don't forget to start your app by running `.listen()`
+app.get('/album', (req, res) => {
+  res.send(albumListArray);
+});

@@ -8,6 +8,29 @@
   <title>Server Side Inventory</title>
 </head>
 <body>
-  <header>Inventory Management System</header>
+  <header>
+    <h1>Inventory Management System</h1>
+  </header>
+  <h2>Add Item:</h2>
+  <form>
+    <input type="text" id="name-in" />
+    <input type="text" id="description-in" />
+    <button id="add-btn">Add</button>
+  </form>
+  <form>
+    <input type="text" id="search-in" />
+    <button id="search-btn">Search</button>
+  </form>
+  <button id="clear-btn">Clear</button>
+
+  <table>
+    <th>
+      <td>Name</td>
+      <td>Description</td>
+    </th>
+    <tbody id="inventory">
+    </tbody>
+  </table>
+
 </body>
 </html>
