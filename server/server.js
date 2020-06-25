@@ -30,6 +30,9 @@ app.listen( port, () => {
   console.log( 'Server is listening on port', port );
 })
 
+app.get('/inventory', (req, res) => {
+  res.send(inventory);
+});
 
 app.post('/add-item', (req, res) => {
   let item = req.body;
@@ -40,11 +43,21 @@ app.post('/add-item', (req, res) => {
   res.sendStatus(201);
 })
 
+app.post('/search', (req, res) => {
+  let arrayOfResults = [];
+  let words = req.body.bird;
+  //if this is an empty object, it means that you forgot bodyParser
+  console.log('Looking for', words);
 
+  for (let i = 0; i < inventory.length; i++) {
+    const el = inventory[i];
+    if (0 < el.name.search(words) || 0 < el.description.search(words)) {
+      arrayOfResults.push(el);
+    }
+  }
+  res.send(arrayOfResults); //TODO START HERE
+})
 
-app.get('/inventory', (req, res) => {
-  res.send(inventory);
-});
 
 /*
 app.get('/song', (req, res) => {

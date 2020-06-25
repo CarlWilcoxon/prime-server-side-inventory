@@ -37,7 +37,7 @@ function onReady() {
 function searchForItem() {
   event.preventDefault(); //so the page doesn't reload
   
-  let substring = $('#search-in').val();
+  let substring = { bird: $('#search-in').val()};
   console.log('searching for:', substring);
 
   $.ajax({
@@ -87,12 +87,12 @@ function updateInventory() {
 
 }
 
-function updateSearchResults(arrayOfItems) {
+function updateSearchResults(res) {
   $('#inventory').empty();  //empty out the table
   //render the search results
   //TODO add a fail handler
-  for (let i = 0; i < response.length; i++) {
-    let item = response[i];
+  for (let i = 0; i < res.length; i++) {
+    let item = res[i];
     $('#inventory').append(`
         <tr>
             <td class="item-name">${item.name}</td>
