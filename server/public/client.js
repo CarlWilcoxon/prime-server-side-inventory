@@ -4,8 +4,8 @@ function addItem(event) {
   event.preventDefault(); //so the page doesn't reload
 
   //get item inputs
-  let name = $('name-in').val();
-  let description = $('description-in').val();
+  let name = $('#name-in').val();
+  let description = $('#description-in').val();
   let item = {
     name,
     description
@@ -18,10 +18,14 @@ function onReady() {
   console.log('DOM is ready');
 
   //setup handlers for click events
-  $('add-btn').on('click', addItem);
+  $('#add-btn').on('click', addItem);
+  
+  //render the initial inventory
+  updateInventory();
 }
 
 function submitItem(item) {
+  console.log('item is:', item);
   $.ajax({
     type: 'POST',
     url: '/add-item',

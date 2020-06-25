@@ -6,7 +6,14 @@ let express = require('express');
 
 // creates an instance of express to do all the web server things
 const app = express();
-const inv = require('./modules/inventory')
+
+//storing on the server, so it doesn't go away when the page refreshes
+const inventory = [
+  {
+    name: 'Apple',
+    description: 'a crisp, tart treat'
+  },
+];
 
 // setup the public directory for static files
 // any files in here can be sent back to web browsers or clients
@@ -29,20 +36,21 @@ app.post('/add-item', (req, res) => {
   //if this is an empty object, it means that you forgot bodyParser
   console.log('Got new item', item);
 
-  inv.push(item);
+  inventory.push(item);
   res.sendStatus(201);
 })
 
 
 
-app.get('/artist', (req, res) => {
-  res.send(artistListArray);
+app.get('/inventory', (req, res) => {
+  res.send(inventory);
 });
 
+/*
 app.get('/song', (req, res) => {
   res.send(songListArray);
 });
 
 app.get('/album', (req, res) => {
   res.send(albumListArray);
-});
+});*/
